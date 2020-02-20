@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+<head>
+  {% block head %} {% load static %}
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="{% static 'css/developer_games.css' %}"
+  />
+  {% endblock %}
+</head>
+<body>
+  {% block content %}
+  <div id="content">
+    {% if no_games %}
+    <div id="empty">
+      <h2>You don't have any games</h2>
+      <p>Create a game <a href="/games/new/">here</a></p>
+    </div>
+    {% endif %} {% for game in games %}
+    <div class="card">
+      <a href="/games/{{game.id}}/modify">
+        <div class="embed-responsive embed-responsive-1by1">
+          <img
+            src="{{ game.thumbnail }}"
+            alt="{{ game.title }}"
+            class="card-img-top embed-responsive-item"
+          />
+        </div>
+        <p class="card-img-overlay">{{game.title}}</p>
+        <div class="card-body">
+          <p class="card-text">Times downloaded: {{game.times_downloaded}}</p>
+          <p class="card-text">Revenue generated: {{game.revenue}} €</p>
+          <p class="card-text">Last played:<br />{{game.last_download}}</p>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+  {% endblock %}
+</body>

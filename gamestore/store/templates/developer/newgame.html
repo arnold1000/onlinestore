@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+<head>
+  {% block head %} {% load static %}
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="{% static 'css/newgame.css' %}"
+  />
+  {% endblock %}
+</head>
+{% block content %}{% autoescape on %}
+<div id="content">
+  <div class="card" id="add">
+    <form method="POST" class="post-form">
+      {% csrf_token %} {{ form.as_p }}
+
+      <button type="submit" class="save btn-success">Save</button>
+  </div>
+</div>
+
+{% endautoescape %}
+{% endblock %}
+
+
+

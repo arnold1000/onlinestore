@@ -1,0 +1,3 @@
+djangoenv/
+.DS_Store
+gamestore/gamestore/__pycache__

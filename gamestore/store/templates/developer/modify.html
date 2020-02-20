@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+<head>
+  {% block head %} {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/modify.css' %}" />
+  {% endblock %}
+</head>
+<body>
+  {% block content %}{% autoescape on %}
+  <div id="content">
+    <div id="modify_group">
+      <div class="card" id="modify">
+        <form method="POST" class="post-form">
+          <h3 class="card-title text-center">Modify your game</h3>
+
+          {% csrf_token %} {{ form.as_p }}
+
+          <button type="submit" class="save btn">Save</button>
+
+          <div class="badge" id="danger_zone">
+            <span
+              >DANGER ZONE
+              <a href="delete" class="btn btn-danger">Delete</a></span
+            >
+          </div>
+        </form>
+      </div>
+      <div class="card" id="description">
+          <img
+          src="{{ game.thumbnail }}"
+          alt="{{ game.title }}"
+          class="card-img-top embed-responsive embed-responsive-1by1"
+          id="image"
+          />
+        <div class="card-body">
+          <h4 class="card-title text-center">{{game.title}}</h4>
+          <p clss="card-text">{{game.description}}</p>
+          <h5 clss="card-text">{{game.price}}€</5>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endautoescape %} {% endblock %}
+</body>

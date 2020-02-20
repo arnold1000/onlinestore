@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+<head>
+  {% block head %} {% load static %}
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="{% static 'css/user_games.css' %}"
+  />
+  {% endblock %}
+</head>
+
+<body>
+  {% block content %}
+  <div id="content">
+    {% if no_games %}
+    <div id="empty">
+      <h2>You don't have any games</h2>
+      <p>Buy games <a href="/shop/">here</a></p>
+    </div>
+    {% endif %} {% for game in games %}
+    <div class="card">
+      <a href="/games/{{game.id}}/">
+        <div class="embed-responsive embed-responsive-1by1">
+          <img
+            src="{{ game.thumbnail }}"
+            alt="{{ game.title }}"
+            class="card-img-top embed-responsive-item"
+          />
+        </div>
+        <p class="card-img-overlay">{{game.title}}</p>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+  {% endblock%}
+</body>

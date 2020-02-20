@@ -1,0 +1,45 @@
+#content {
+  margin: 1em;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 1em;
+  font-weight: bold;
+}
+
+img {
+  object-fit: cover;
+}
+
+.card-img-overlay {
+  font-size: 2em;
+  color: mediumvioletred !important;
+  padding-top: 0 !important;
+}
+
+.card {
+  max-width: 600px;
+  background-color: #91bdda;
+}
+
+.card:hover {
+  border: solid 3px #5fcc9e;
+}
+
+.card:hover .card-img-overlay {
+  color: rgb(236, 70, 175) !important;
+}
+
+.card a {
+  color: transparent;
+}
+
+.card-body {
+  background-color: #91bdda;
+  color: black;
+}
+
+#empty {
+  text-align: center;
+  margin-top: 5em;
+}

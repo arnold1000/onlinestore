@@ -1,0 +1,33 @@
+#game_group {
+  margin: auto;
+  width: 90%;
+  overflow: overlay;
+  padding-top: 1em;
+}
+
+iframe {
+  width: 700px;
+  height: 400px;
+  margin: auto;
+}
+
+#game_frame {
+  width: calc(700px + 1em);
+  height: calc(400px + 1em);
+  float: left;
+  margin: 0.5em;
+}
+
+#stats {
+  background-color: #c2f7e4;
+  width: calc(500px + 1em);
+  height: calc(400px + 1em);
+  padding: 0.5em;
+  float: left;
+  margin: 0.5em;
+  text-align: left;
+}
+
+#stats img {
+  object-fit: cover;
+}

@@ -1,0 +1,9 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Delete your game</h2>
+
+<h3>Are you sure you want to delete your game?</h3>
+<form method="POST" class="post-form">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit" class="save btn btn-default">Delete</button>
+</form>
+{% endblock %}

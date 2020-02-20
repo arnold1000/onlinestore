@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block head %} {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/game.css' %}" />
+    {% endblock %}
+  </head>
+
+  <body>
+    {% block content %} {% csrf_token %}
+    <script>
+      const displayMessages = response => {
+        const messages = response.responseJSON.messages
+        $("#messages").empty()
+        messages.forEach(msg => {
+          let type = ""
+          switch (msg.level) {
+            case 20:
+              type = "class='alert alert-info'"
+              break
+            case 25:
+              type = "class='alert alert-success'"
+              break
+            case 30:
+              type = "class='alert alert-warning'"
+              break
+            case 40:
+              type = "class='alert alert-danger'"
+              break
+          }
+          $("#messages").append(
+            "<li " +
+              type +
+              "style='list-style-type: none; margin-bottom: 2px;'>" +
+              msg.message +
+              "</li>"
+          )
+        })
+      }
+
+      //$(document).ready(function() {
+      ;("use strict")
+      $(window).on("message", function(evt) {
+        const event = evt.originalEvent
+        const data = event.data
+        const frame = $("#game").get(0)
+        const frame_div = $("#game_frame").get(0)
+        const csrf_token = jQuery("[name=csrfmiddlewaretoken]").val()
+        if (event.origin !== "{{origin}}") {
+          return
+        }
+        if (data.messageType === "SETTING") {
+          const width = data.options.width
+          const height = data.options.height
+          frame.width = width
+          frame.height = height
+          const stats = $("#stats").get(0)
+          const game_frame = $("#game_group").get(0)
+          game_frame.style.minWidth = width + 20 + "px"
+          game_frame.style.maxWidth = 2 * width + 40 + "px"
+          frame_div.style.width = width + "px"
+          frame_div.style.height = height + "px"
+          stats.style.height = height + "px"
+        }
+        if (data.messageType === "SCORE") {
+          $.ajax({
+            url: "{{game_url}}" + "score",
+            type: "POST",
+            data: {
+              score: data.score
+            },
+            headers: {
+              "X-CSRFToken": csrf_token
+            },
+            success: (data, status, response) => {
+              displayMessages(response)
+            },
+            error: displayMessages
+          })
+        }
+        if (data.messageType === "SAVE") {
+          $.ajax({
+            url: "{{game_url}}" + "save",
+            type: "POST",
+            data: {
+              gameState: JSON.stringify(data.gameState)
+            },
+            headers: {
+              "X-CSRFToken": csrf_token
+            },
+            success: (data, status, response) => {
+              displayMessages(response)
+            },
+            error: displayMessages
+          })
+        }
+        if (data.messageType === "LOAD_REQUEST") {
+          $.ajax({
+            url: "{{game_url}}" + "load",
+            type: "POST",
+            headers: {
+              "X-CSRFToken": csrf_token
+            },
+            success: (data, status, response) => {
+              const message = {
+                messageType: "LOAD",
+                gameState: JSON.parse(data)
+              }
+              frame.contentWindow.postMessage(message, "*")
+            },
+            error: displayMessages
+          })
+        }
+      })
+      //})
+    </script>
+    <span id="messages"></span>
+    <div id="content">
+      <div id="game_group" class="">
+        <div id="game_frame" class="card">
+          <iframe src="{{ game.url }}" alt="{{ game.title }}" id="game">
+            <p>Your browser does not support iframes.</p>
+          </iframe>
+        </div>
+        <div id="stats" class="card">
+          <img src={{game.thumbnail}} class="embed-responsive embed-responsive-1by1"></img>
+          <div>
+            <h4>Global high score: {{high_score}}</h4>
+            <h4>Average score    : {{average_score}}</h4>
+            <br />
+            <h4>Your high score  : {{personal_score}}</h4>
+            <h4>Times played     : {{gameInfo.times_played}}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock%}
+  </body>
+</html>

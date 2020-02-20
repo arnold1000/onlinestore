@@ -1,0 +1,5 @@
+#content {
+  background-color: aqua;
+  display: grid;
+  grid-template-columns: minmax(300px, 1fr);
+}

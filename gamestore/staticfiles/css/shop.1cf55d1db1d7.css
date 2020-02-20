@@ -1,0 +1,49 @@
+#content {
+  margin: 1em;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 1em;
+}
+
+img {
+  object-fit: cover;
+}
+
+.card-img-overlay {
+  font-size: 2em;
+  color: mediumvioletred !important;
+  padding-top: 0 !important;
+  font-weight: bold;
+}
+
+#price {
+  text-align: center;
+  font-size: 1.5em;
+  width: 100%;
+  margin: 0;
+  background-color: #91bdda;
+  color: #d9ffef;
+}
+
+.card {
+  max-width: 600px;
+  background-color: #91bdda;
+}
+
+.card a {
+  color: transparent;
+}
+
+.card:hover {
+  border: solid 3px #5fcc9e;
+}
+
+.card:hover #price {
+  background-color: #5fcc9e;
+  color: #676e6b;
+}
+
+.card:hover .card-img-overlay {
+  color: rgb(236, 70, 175) !important;
+}

@@ -1,0 +1,42 @@
+body {
+  background-color: #daf0ff !important;
+  min-height: 89vh;
+  height: auto;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  margin-right: 2em;
+  width: 95%;
+  clear: both;
+  margin: 0;
+}
+
+.player_navbar {
+  background-color: #88a3b6 !important;
+}
+
+.navbar-brand {
+  font-weight: bold !important;
+}
+
+.nav-item:nth-child(5n + 1) {
+  color: mediumvioletred !important;
+}
+.nav-item:nth-child(5n + 2) {
+  color: lightsalmon !important;
+}
+.nav-item:nth-child(5n + 3) {
+  color: mediumspringgreen !important;
+}
+.nav-item:nth-child(5n + 4) {
+  color: turquoise !important;
+}
+.nav-item:nth-child(5n + 5) {
+  color: teal !important;
+}
+
+.navbar-light {
+  background-color: #669682 !important;
+}

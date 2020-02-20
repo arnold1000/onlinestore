@@ -1,0 +1,82 @@
+{% load socialaccount %}
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    {% load static %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/login.css' %}"
+    />
+  </head>
+  <body>
+    {% autoescape on %} {% if messages %}
+    <div id="messages">
+      {% for message in messages %} {% if message.level == 20 %}
+      <li
+        class="alert alert-info"
+        style="list-style-type: none; margin-bottom: 2px;"
+      >
+        {{ message }}
+      </li>
+      {% elif message.level == 25 %}
+      <li
+        class="alert alert-success"
+        style="list-style-type: none; margin-bottom: 2px;"
+      >
+        {{ message }}
+      </li>
+      {% elif message.level == 30 %}
+      <li
+        class="alert alert-warning"
+        style="list-style-type: none; margin-bottom: 2px;"
+      >
+        {{ message }}
+      </li>
+      {% elif message.level == 40 %}
+      <li
+        class="alert alert-danger"
+        style="list-style-type: none; margin-bottom: 2px;"
+      >
+        {{ message }}
+      </li>
+      {% endif %} {% endfor %} {% endif %}
+    </div>
+    <div class="content-section">
+      <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+          <legend class="border-bottom mb-4">Log In</legend>
+          {{ form.as_p }}
+        </fieldset>
+
+        <div class="form-group">
+          <button class="btn btn-outline-info" type="submit">Login</button>
+        </div>
+      </form>
+      <div class="border-top pt-3">
+        <small class="text-muted">
+          Need an Account?
+          <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
+          <br />
+          Login using your Google account
+          <a class="ml-2" href="{% provider_login_url 'google' %}">Here</a>
+          <span id="dev_info"> (not for game developers)</span>
+        </small>
+      </div>
+    </div>
+    {% endautoescape %}
+  </body>
+</html>

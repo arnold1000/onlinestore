@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <title>Store</title>
+
+    <!-- src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous" -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
+    {% block head %} {% endblock %}
+  </head>
+
+  <body>
+    {% if is_developer %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand">Developer</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="{% url 'games' %}">Games</a>
+          <a class="nav-item nav-link" href="{% url 'add_game' %}">Add Game</a>
+          <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+        </div>
+      </div>
+    </nav>
+    {% else %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand">Game store</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="{% url 'games' %}">Games</a>
+          <a class="nav-item nav-link" href="{% url 'shop' %}">Shop</a>
+          <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+        </div>
+      </div>
+    </nav>
+    {% endif %} {% if messages %}
+    <div id="base_content">
+      <div id="messages">
+        {% for message in messages %} {% if message.level == 20 %}
+        <li
+          class="alert alert-info"
+          style="list-style-type: none; margin-bottom: 2px;"
+        >
+          {{ message }}
+        </li>
+        {% elif message.level == 25 %}
+        <li
+          class="alert alert-success"
+          style="list-style-type: none; margin-bottom: 2px;"
+        >
+          {{ message }}
+        </li>
+        {% elif message.level == 30 %}
+        <li
+          class="alert alert-warning"
+          style="list-style-type: none; margin-bottom: 2px;"
+        >
+          {{ message }}
+        </li>
+        {% elif message.level == 40 %}
+        <li
+          class="alert alert-danger"
+          style="list-style-type: none; margin-bottom: 2px;"
+        >
+          {{ message }}
+        </li>
+        {% endif %} {% endfor %}
+      </div>
+      {% endif %} {% block content %} {% endblock%}
+      <br />
+      <br />
+      <footer class="page-footer font-small">
+        <div class="footer-copyright text-right py-3">
+          © Wsd Game Store 2020 :
+          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Click Me </a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

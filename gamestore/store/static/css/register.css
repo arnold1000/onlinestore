@@ -1,0 +1,34 @@
+body {
+  background-color: #daf0ff;
+}
+
+.content-section {
+  background-color: white;
+  width: 80%;
+  margin: auto;
+  margin-top: 5em;
+  border: 1px solid gray;
+  border-radius: 3px;
+  padding: 1em;
+}
+
+#dev_info {
+  color: darkslategray;
+}
+
+.helptext {
+  visibility: hidden;
+}
+
+.errorlist li {
+  list-style-type: none;
+  border: 1px solid gray;
+  border-radius: 3px;
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+input {
+  width: 300px;
+}

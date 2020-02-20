@@ -1,0 +1,54 @@
+#modify_group {
+  margin: auto;
+  width: 90%;
+  overflow: overlay;
+  padding-top: 1em;
+}
+
+#modify {
+  max-width: 500px;
+  float: left;
+  padding: 1em;
+}
+
+#description {
+  max-width: 600px;
+  float: left;
+}
+
+img {
+  object-fit: cover;
+}
+
+p input {
+  margin-left: 1em;
+  width: 350px;
+  float: right;
+}
+
+.save {
+  background-color: #5fcc9e;
+  width: 100%;
+}
+
+.card {
+  margin: 1em;
+}
+
+#danger_zone {
+  margin-top: 4em;
+  background-color: rgb(224, 109, 109);
+  width: 100%;
+}
+
+#danger_zone span {
+  float: right;
+}
+
+.btn-danger {
+  margin: 0.5em;
+}
+
+.card-body {
+  text-align: center;
+}

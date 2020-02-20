@@ -1,0 +1,35 @@
+#content {
+  margin: 1em;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 1em;
+}
+
+img {
+  object-fit: cover;
+}
+
+.card-img-overlay {
+  font-size: 2em;
+  color: mediumvioletred !important;
+  padding-top: 0 !important;
+  font-weight: bold;
+}
+
+.card {
+  max-width: 600px;
+}
+
+.card:hover {
+  border: solid 3px #5fcc9e;
+}
+
+.card:hover .card-img-overlay {
+  color: rgb(236, 70, 175) !important;
+}
+
+#empty {
+  text-align: center;
+  margin-top: 5em;
+}

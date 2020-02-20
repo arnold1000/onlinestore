@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+<head>
+  {% block head %} {% load static %}
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="{% static 'css/buy.css' %}"
+  />
+  {% endblock %}
+</head>
+  <body>
+    {% block content%}
+    <div class="content">
+      <div id="game_group">
+        <div class="card" id="image">
+          <img src="{{ game.thumbnail }}" alt="{{game.title}}" class="embed-responsive embed-responsive-1by1"/>
+        </div>
+        <div class="card" id="description">
+          <div class="card-body">
+            <h1 class="card-title text-center">{{ game.title }}</h1>
+            <p class="card-text text-center">{{ game.description }}</p>
+            <h5 class="card-text text-center">Developed by {{game.creator}}</h5>
+          </div>
+          <form action="" , method="POST">
+            {% csrf_token %}
+            <button class="btn" type="submit">{{game.price}} € </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {%endblock%}
+  </body>
+</html>
